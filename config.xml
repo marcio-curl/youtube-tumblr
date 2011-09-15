@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://example.com/SimpleClockSD" defaultlocale="pt" viewmodes="minimized">
+  <name short="YouTube -> Tumblr">Gerenciador de Posts para o Tumblr</name>
+  <description></description>
+  <author href="http://kurhl.tumblr.com/">Curl!</author>
+  <icon src="imagens/streaming64.png" width="64" height="64" /> 
+  <icon src="imagens/streaming.svg" width="64" height="64" /> <!-- Imagem de http://www.openclipart.org/detail/121507/streaming-video-by-liontooth34 -->
+  <feature name="opera:speeddial" required="false">
+    <param name="url" value="http://kurhl.tumblr.com"/>
+  </feature>
+  <access origin="*" />
+</widget>
