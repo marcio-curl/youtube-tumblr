@@ -14,10 +14,13 @@ function getUrlVars() {
 }
 
 window.addEventListener('load', function() {
-	vars = getUrlVars();
-	if (!!vars.oauth_token && !!vars.oauth_verifier)
-	{
-		widget.preferences.tumblrOAuthToken = vars.oauth_token;
-		widget.preferences.tumblrOAuthVerifier = vars.oauth_verifier;
+  if (document.referrer.match(/^http[s]?\:\/\/www\.tumblr\.com\/oauth\/authorize/)) // Não vai funcionar se a url de autenticação mudar...
+  {
+	  vars = getUrlVars();
+	  if (!!vars.oauth_token && !!vars.oauth_verifier)
+	  {
+		  widget.preferences.tumblrOAuthToken = vars.oauth_token;
+		  widget.preferences.tumblrOAuthVerifier = vars.oauth_verifier;
+    }
   }
 }, false);
