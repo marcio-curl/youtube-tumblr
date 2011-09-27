@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 
 <head>
-<meta charset="UTF-8">
-<title>Gerenciador de Posts para o Tumblr</title>
+  <meta charset="UTF-8">
+  <title>Gerenciador de Posts para o Tumblr</title>
 
-<script type="text/javascript" src="scripts/jquery.js"></script>
-<script type="text/javascript" src="scripts/jsOAuth.js"></script>
+  <script type="text/javascript" src="scripts/jquery.js"></script>
+  <script type="text/javascript" src="scripts/jquery.parsequery.js"></script>
+  <script type="text/javascript" src="scripts/jquery.tmpl.min.js"></script>
+  <script type="text/javascript" src="scripts/jsOAuth.js"></script>
+  <script type="text/javascript" src="scripts/playlist.js"></script>
+
+  <script id="authLink" type="text/x-jquery-tmpl">
+    <a href="${url}">Autenticar</a>
+  </script>
+
+  <script id="listaVideos" type="text/x-jquery-tmpl">
+    <section>
+      <img src="${imgSrc}" alt="Thumb">
+      <p>${titulo}</p>
+      <p>${descricao}</p>
+    </section>
+  </script>
+
+  <link rel="stylesheet" href="css/playlist.css" media="all">
 </head>
 
 <body>
-<p>Página inicial</p>
+  <header id="erros"></header>
+  <nav class="opcoes"><a href="#">Opções</a></nav>
+  <!-- Ícones de http://www.iconspedia.com/pack/shiny-social-icons-icons-3516/ -->
+  <article class="opcoes">
+    <section>
+      <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"></select>             
+    </section>
+    <section>
+      <img src="imagens/Youtube.png" alt="YouTube"><span id="youtubeAuth"></span><select id="playlistYouTube"></select>             
+    </section>
+  </article>
+  <article class="lista">
+  </article>
 </body>
