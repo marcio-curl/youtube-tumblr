@@ -176,10 +176,74 @@ $(document).ready(function(){
   {
     $('#erros').addClass('error').text(texto.text);
   }
+  
+  oauthFunc(tblrOauth, parametros);
+  function oauthFunc(oauth, params)
+  {
+    if (!params.token || !params.tokenSecret)
+    {
+    /*
+    tblrOauth.fetchRequestToken(function(url){   	 	
+      $('#statusTumblr').html(' <a href="' + url + '">Autenticar</a>'); // O link deixará de funcionar se o pedido for negado...
+      $('#trocarTumblr').hide();
+   	  //window.open(url, 'Autorizar');
+
+      setTimeout(aguardarAutorizacaoTumblr, 100);
+    }, erro);
+    */
+      console.log('não autenticado');    
+    }
+    else
+    {
+      console.log('autenticado');    
+      oauth.setAccessToken(params.token, params.tokenSecret);
+      testeOAuth();
+    }
+    
+    function aguardarAutorizacao()
+    {
+	    if (!!widget.preferences.tumblrOAuthToken && !!widget.preferences.tumblrOAuthVerifier)
+		  {		         	
+		    tblrOauth.setVerifier(widget.preferences.tumblrOAuthVerifier);
+        tblrOauth.fetchAccessToken(function(data){
+          var token = $.parseQuery(data.text);
+          widget.preferences.tumblrAccessToken = token.oauth_token;
+		      widget.preferences.tumblrAccessTokenSecret = token.oauth_token_secret;
+          testeOAuthTumblr();
+        }, erro);
+
+        // Exclui os tokens temporários
+        delete widget.preferences.tumblrOAuthToken;
+		    delete widget.preferences.tumblrOAuthVerifier;
+      } 
+	    else
+      {
+        setTimeout(aguardarAutorizacaoTumblr, 100);			 
+      }
+    }
+
+    function testeOAuth()
+    {
+      oauth.post("http://api.tumblr.com/v2/user/info", {}, function (data) {
+        info = jQuery.parseJSON(data.text);
+        //alert(data.text);
+      }, erro);
+    }
+  }  
+  
+  // Listen for messages
+  opera.extension.onmessage = function(event){
+    // Post a sentence (which includes the message received) to the opera error console
+  //    opera.postError("This is what I got from injected script: "+event.data);
+    opera.postError("Recebido: " + event.data);
+  };
+
+
+  
 });
 
 // Links em nova janela ###(tornar isso mais específico)
 $('a').click(function(){
-  alert($(this).attr('href'));
+//  alert($(this).attr('href'));
   window.open($(this).attr('href'));
 });

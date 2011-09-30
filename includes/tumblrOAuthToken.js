@@ -1,9 +1,10 @@
 // ==UserScript==
 // @include http://kurhl.tumblr.com/*
+// @include http://www.youtube.com/*
 // ==/UserScript==
 //
 // Extrai as variáveis oauth_token e oauth_verifier derivadas do processo de autenticação
-// OAuth e as guarda nas configurações locais da extensão. 
+// OAuth e as envia para o script de fundo.
 
 function getUrlVars() {
 	var vars = {};
@@ -24,3 +25,7 @@ window.addEventListener('load', function() {
     }
   }
 }, false);
+
+opera.extension.onmessage = function(event){
+  console.log('Mensagem recebida: ' + event.data);
+};

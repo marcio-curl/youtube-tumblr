@@ -10,33 +10,50 @@
   <script type="text/javascript" src="scripts/jsOAuth.js"></script>
   <script type="text/javascript" src="scripts/playlist.js"></script>
 
+  <!-- Blueprint CSS -->
+  <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+
+  <link rel="stylesheet" href="css/playlist.css" type="text/css" media="all">
+
   <script id="authLink" type="text/x-jquery-tmpl">
     <a href="${url}">Autenticar</a>
   </script>
 
   <script id="listaVideos" type="text/x-jquery-tmpl">
-    <section>
-      <img src="${imgSrc}" alt="Thumb">
-      <p>${titulo}</p>
-      <p>${descricao}</p>
+    <section id="${videoID}" class="video span-20">
+      <form>
+        <fieldset>
+          <legend>${titulo}</legend>
+          <a href="${link}"><img class="left" src="${imgSrc}" alt="Thumb"></a>
+          <p>${descricao}</p>
+          <p><label for="texto">Legenda: </label><textarea class="legenda"></textarea></p>
+          <p><label for="tags">Tags: </label><input class="tags" type="text"></p>
+          <p><input type="submit"></p>
+        </fieldset>
+      </form>
     </section>
   </script>
 
   <link rel="stylesheet" href="css/playlist.css" media="all">
 </head>
 
-<body>
+<body class="container">
   <header id="erros"></header>
-  <nav class="opcoes"><a href="#">Opções</a></nav>
+  <nav class="opcoes span-20 last"><a class="right" href="#">Opções</a></nav>
   <!-- Ícones de http://www.iconspedia.com/pack/shiny-social-icons-icons-3516/ -->
-  <article class="opcoes">
-    <section>
+  <section class="opcoes span-20 success">
+    <form>
       <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"></select>             
-    </section>
-    <section>
+    </form>
+    <form>
       <img src="imagens/Youtube.png" alt="YouTube"><span id="youtubeAuth"></span><select id="playlistYouTube"></select>             
-    </section>
-  </article>
-  <article class="lista">
+    </form>
+    <span class="fechar right">[<a href="#">X</a>]</span>
+  </section>
+  <article class="container lista">
   </article>
 </body>

@@ -1,7 +1,31 @@
-#erros {
-  background-color: red;
+img {
+  vertical-align: middle;
+  padding: 0 0.5em;
 }
 
+/*
 article.opcoes {
   display: none;
+}
+*/
+
+.video p {
+  padding-left: 140px;
+}
+
+input[type="text"] {
+  width: 50em;
+}
+
+nav.opcoes {
+  display: none;
+}
+
+.opcoes  form {
+  display: inline
+}
+
+.lista textarea {
+  width: 50em;
+  height: 2em;
 }
