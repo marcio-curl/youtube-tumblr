@@ -3,8 +3,23 @@ img {
   padding: 0 0.5em;
 }
 
+nav {
+  padding-bottom: 1em;
+  padding-right: 1em;
+}
+
+.error {
+  width: 100%;
+  position: fixed;
+}
+
+
+section.opcoes {
+  display: none;
+}
+
 /*
-article.opcoes {
+nav.opcoes {
   display: none;
 }
 */
@@ -17,12 +32,13 @@ input[type="text"] {
   width: 50em;
 }
 
-nav.opcoes {
-  display: none;
+.opcoes select {
+  margin-left: 0.7em;
 }
 
 .opcoes  form {
-  display: inline
+  display: inline-block;
+  min-width: 20%;
 }
 
 .lista textarea {

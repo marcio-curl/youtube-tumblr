@@ -32,7 +32,7 @@
           <p>${descricao}</p>
           <p><label for="texto">Legenda: </label><textarea class="legenda"></textarea></p>
           <p><label for="tags">Tags: </label><input class="tags" type="text"></p>
-          <p><input type="submit"></p>
+          <p><input type="hidden" class="deleteID" value="${deleteID}"><input type="submit"></p>
         </fieldset>
       </form>
     </section>
@@ -41,11 +41,11 @@
   <link rel="stylesheet" href="css/playlist.css" media="all">
 </head>
 
-<body class="container">
+<body class="">
   <header id="erros"></header>
-  <nav class="opcoes span-20 last"><a class="right" href="#">Opções</a></nav>
+  <nav class="opcoes"><a class="right" href="#">Opções</a></nav>
   <!-- Ícones de http://www.iconspedia.com/pack/shiny-social-icons-icons-3516/ -->
-  <section class="opcoes span-20 success">
+  <section class="opcoes success">
     <form>
       <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"></select>             
     </form>

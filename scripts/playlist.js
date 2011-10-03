@@ -40,7 +40,7 @@ $(document).ready(function(){
       metodo: 'GET',
       url: 'https://gdata.youtube.com/feeds/api/users/default?v=2&alt=json',
     }, function(data){
-      $('#youtubeAuth').text('Autenticado como ' + data.entry.yt$username.$t);
+      $('#youtubeAuth').text(data.entry.yt$username.$t);
     });
 
     // Obtém a lista de playlists
@@ -78,25 +78,38 @@ $(document).ready(function(){
                 return item.video.player[i]; // ### Saber por que só funciona assim.
             },
             titulo: item.video.title,
-            descricao: item.video.description
+            descricao: item.video.description,
+            deleteID: item.id
           };
         });
         
         // Template para a lista de vídeos: o primeiro termo é a chamada para o <script>
         $('#listaVideos').tmpl(template).appendTo('article.lista');
         
+        /* Autocorreção das tags, inserindo a ví­rgula após a última tag quando for digitado  uma nova tag com # */
+        $('input.tags').keypress(function(e){
+          if (e.keyCode == 35)
+          {
+            $(this).val($(this).val().replace(/([\w\d])\s+$/, '$1, ')); // Regex: Captura uma letra ou nÃºmero seguido por espaÃ§o e substitui pelo mesmo caractere com vÃ­rgula no final
+          }
+        });
+ 
+        
         // Chamada para o envio do vídeo.
         $('.video').submit(function(e){
           e.preventDefault();
+          $(this).find('input').attr('disabled', 'disabled'); // Desabilita os inputs enquanto enviamos
           // só funciona porque impedimos o envio quando o Tumblr não estiver autenticado
           var item = $(this);
+          // Seria bom se houvesse uma forma de transformar o formulário como um todo num objeto automaticamente.
           var legenda = $(this).find('.legenda:first').val();
           var tags = $(this).find('.tags:first').val();
+          var deleteID = $(this).find('.deleteID:first').val();
           if (!!legenda && !!tags)
           {
             reqOAuth(oauthTumblr, {
               metodo: 'POST',
-              url: 'http://api.tumblr.com/v2/blog/weigay.tumblr.com/post',
+              url: 'http://api.tumblr.com/v2/blog/wgtestes.tumblr.com/post', // ### AJUSTAR!!!
               data: {
                 type: 'video',
                 state: 'queue',
@@ -105,6 +118,16 @@ $(document).ready(function(){
                 embed: '<iframe width="420" height="315" src="http://www.youtube.com/embed/' + $(this).attr('id') + '" frameborder="0" allowfullscreen></iframe>'
               }
             }, function(){
+              // Se o vídeo foi enviado, vamos removê-lo da playlist            
+              reqOAuth(oauthYouTube, {
+                metodo: 'DELETE',
+                url: 'https://gdata.youtube.com/feeds/api/playlists/' + preferencias.playlistYouTube + '/' + deleteID,
+                cabecalho: {
+                  'X-Gdata-Key': 'key=AI39si7j4-AcJHD-9-O3-yL1CZIIlXDEyTKyQU6rKYE8aclHeAheWFEI_8nF2YxAPM_nh1f_kuYtVhy3CmNajtNDquDNWVPjCA'
+                }
+              }, function(){
+                console.log(deleteID + ' apagado');
+              });
               item.slideUp();
             });
           }
@@ -138,12 +161,12 @@ $(document).ready(function(){
       metodo: 'POST',
       url: 'http://api.tumblr.com/v2/user/info'    
     }, function(data){
-      $('#tumblrAuth').text('Autenticado como ' + data.response.user.name);
+      $('#tumblrAuth').text(data.response.user.name);
       // Opção inicial em branco
       $('#blogTumblr').html('<option></option>');
       // Lista os blogs
       $.each(data.response.user.blogs, function(i, blog){
-      $('#blogTumblr').append('<option value="' + blog.name + '">' + blog.name + '</option>');          
+      $('#blogTumblr').append('<option value="' + blog.name + '">' + blog.title + '</option>');          
     });
         
     if (!!preferencias.blogTumblr)
@@ -223,6 +246,7 @@ $(document).ready(function(){
     oauth.request({
       method: params.metodo,
       url: params.url,
+      headers: params.cabecalho,
       data: params.data,
       success: function(data){
         info = jQuery.parseJSON(data.text);
@@ -236,6 +260,10 @@ $(document).ready(function(){
   function erro(texto)
   {
     $('#erros').addClass('error').text(texto.text);
+    $('#erros').append(' <span class="fechar">[<a href="#">X</a>]</span>');
+    $('#erros fechar a').click(function(){
+      $('#erros').hide();    
+    });
   }
 });
 
