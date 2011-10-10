@@ -8,5 +8,8 @@
   <feature name="opera:speeddial" required="false">
     <param name="url" value="http://kurhl.tumblr.com"/>
   </feature>
-  <access origin="*" />
+  <access origin="http://tumblr.com" subdomains="true"/>
+  <access origin="https://youtube.com" subdomains="true"/>
+  <access origin="http://youtube.com" subdomains="true"/>
+  <access origin="http://ytimg.com" subdomains="true"/>  
 </widget>

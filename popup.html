@@ -8,8 +8,15 @@
   <script type="text/javascript" src="scripts/jquery.parsequery.js"></script>
   <script type="text/javascript" src="scripts/jquery.tmpl.min.js"></script>
   <script type="text/javascript" src="scripts/jsOAuth.js"></script>
-  <script type="text/javascript" src="scripts/playlist.js"></script>
 
+  <!-- JQuery UI -->
+  <script type="text/javascript" src="scripts/jquery-ui.js"></script>
+  <link type="text/css" href="css/jquery-ui/vader/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="scripts/jquery.youtubepopup.min.js"></script>
+    
+  <script type="text/javascript" src="scripts/playlist.js"></script>
+  
   <!-- Blueprint CSS -->
   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
@@ -28,7 +35,7 @@
       <form>
         <fieldset>
           <legend>${titulo}</legend>
-          <a href="${link}"><img class="left" src="${imgSrc}" alt="Thumb"></a>
+          <a rel="${videoID}" class="youtube" href="${link}"><img class="left" src="${imgSrc}" alt="Thumb"></a>
           <p>${descricao}</p>
           <p><label for="texto">Legenda: </label><textarea class="legenda"></textarea></p>
           <p><label for="tags">Tags: </label><input class="tags" type="text"></p>
@@ -37,8 +44,6 @@
       </form>
     </section>
   </script>
-
-  <link rel="stylesheet" href="css/playlist.css" media="all">
 </head>
 
 <body class="">

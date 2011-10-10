@@ -2,7 +2,7 @@ var OAuthTmpToken = new Object();
 
 // o que fazer quando conectado...
 opera.extension.onconnect = function(evento){
-  console.log('conectado');
+//  console.log('conectado');
 };
 
 // Guarda os tokens temporários

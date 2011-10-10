@@ -26,6 +26,9 @@ $(document).ready(function(){
   // Verifica se já possuimos os tokens de acesso
   if (!preferencias.youtubeAccessToken || !preferencias.youtubeAccessTokenSecret)
   {
+    $('nav.opcoes').hide();
+    $('section.opcoes').show();    
+    $('section.opcoes').removeClass('success').addClass('notice');    
     obterTokens(oauthYouTube, 'youtube', { scope: 'https://gdata.youtube.com' }, function(link){
       $('#youtubeAuth').html('<a href="' + link + '">Autenticar</a>');
     });
@@ -73,10 +76,11 @@ $(document).ready(function(){
               if (!!item.video.thumbnail)
                 return item.video.thumbnail.sqDefault;
             },
-            link: function(){
-              for (i in item.video.player)
-                return item.video.player[i]; // ### Saber por que só funciona assim.
-            },
+            link: 'https://www.youtube.com/v/' + item.video.id,
+//              function(){
+//              for (i in item.video.player)
+//                return item.video.player[i]; // ### Saber por que só funciona assim.
+//            },
             titulo: item.video.title,
             descricao: item.video.description,
             deleteID: item.id
@@ -93,8 +97,9 @@ $(document).ready(function(){
             $(this).val($(this).val().replace(/([\w\d])\s+$/, '$1, ')); // Regex: Captura uma letra ou nÃºmero seguido por espaÃ§o e substitui pelo mesmo caractere com vÃ­rgula no final
           }
         });
- 
-        
+   
+        $(".youtube").YouTubePopup();
+
         // Chamada para o envio do vídeo.
         $('.video').submit(function(e){
           e.preventDefault();
@@ -109,13 +114,13 @@ $(document).ready(function(){
           {
             reqOAuth(oauthTumblr, {
               metodo: 'POST',
-              url: 'http://api.tumblr.com/v2/blog/wgtestes.tumblr.com/post', // ### AJUSTAR!!!
+              url: 'http://api.tumblr.com/v2/blog/' + preferencias.blogTumblr + '/post',
               data: {
                 type: 'video',
                 state: 'queue',
                 caption: legenda,
                 tags: tags,
-                embed: '<iframe width="420" height="315" src="http://www.youtube.com/embed/' + $(this).attr('id') + '" frameborder="0" allowfullscreen></iframe>'
+                embed: '<iframe width="420" height="315" src="https://www.youtube.com/embed/' + $(this).attr('id') + '" frameborder="0" allowfullscreen></iframe>'
               }
             }, function(){
               // Se o vídeo foi enviado, vamos removê-lo da playlist            
@@ -146,6 +151,8 @@ $(document).ready(function(){
   /* ---------- Autenticação no Tumblr ---------- */
   if (!preferencias.tumblrAccessToken || !preferencias.tumblrAccessTokenSecret)
   {
+    $('nav.opcoes').hide();
+    $('section.opcoes').show();    
     $('.lista input, .lista textarea').attr('disabled', 'disabled');
     $('section.opcoes').removeClass('success').addClass('notice');    
     obterTokens(oauthTumblr, 'tumblr', {}, function(link){
@@ -166,8 +173,8 @@ $(document).ready(function(){
       $('#blogTumblr').html('<option></option>');
       // Lista os blogs
       $.each(data.response.user.blogs, function(i, blog){
-      $('#blogTumblr').append('<option value="' + blog.name + '">' + blog.title + '</option>');          
-    });
+        $('#blogTumblr').append('<option value="' + blog.url.replace(/^http[s]?:\/\/(.*)\//, "$1") + '">' + blog.title + '</option>');          
+      });
         
     if (!!preferencias.blogTumblr)
       $('#blogTumblr option[value="' + preferencias.blogTumblr + '"]').attr('selected', 'selected');
@@ -178,7 +185,7 @@ $(document).ready(function(){
 
   // escolha do blog usado
   $('#blogTumblr').change(function(){
-    preferencias.blogTumblr = $('#blogTumblr option:selected').text();
+    preferencias.blogTumblr = $('#blogTumblr option:selected').val();
   });
 
   $('.fechar a').click(function(){
