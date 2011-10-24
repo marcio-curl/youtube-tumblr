@@ -1,3 +1,7 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 img {
   vertical-align: middle;
   padding: 0 0.5em;
@@ -13,16 +17,25 @@ nav {
   position: fixed;
 }
 
-
-section.opcoes {
-  display: none;
+section.opcoes select {
+  min-width: 12em;
 }
 
 /*
-nav.opcoes {
+section.opcoes {
   display: none;
 }
 */
+
+
+nav.opcoes {
+  display: none;
+}
+
+
+.erros {
+  position: fixed;
+}
 
 .video p {
   padding-left: 140px;

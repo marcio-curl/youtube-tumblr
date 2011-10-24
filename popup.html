@@ -13,8 +13,7 @@
   <script type="text/javascript" src="scripts/jquery-ui.js"></script>
   <link type="text/css" href="css/jquery-ui/vader/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 
-  <script type="text/javascript" src="scripts/jquery.youtubepopup.min.js"></script>
-    
+  <script type="text/javascript" src="scripts/jquery.youtubepopup.min.js"></script>    
   <script type="text/javascript" src="scripts/playlist.js"></script>
   
   <!-- Blueprint CSS -->
@@ -26,10 +25,19 @@
 
   <link rel="stylesheet" href="css/playlist.css" type="text/css" media="all">
 
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <!-- Template de autenticação -->
   <script id="authLink" type="text/x-jquery-tmpl">
     <a href="${url}">Autenticar</a>
   </script>
 
+  <!-- Template das opções -->
+  <script id="opcoesTmpl" type="text/x-jquery-tmpl">
+    <option value="${id}" ${selecionado} >${titulo}</option>
+  </script>
+
+  <!-- Template para a lista de vídeos -->
   <script id="listaVideos" type="text/x-jquery-tmpl">
     <section id="${videoID}" class="video span-20">
       <form>
@@ -38,6 +46,7 @@
           <a rel="${videoID}" class="youtube" href="${link}"><img class="left" src="${imgSrc}" alt="Thumb"></a>
           <p>${descricao}</p>
           <p><label for="texto">Legenda: </label><textarea class="legenda"></textarea></p>
+          <p><label for="mais">Mais em </label><input class="mais" type="url"></p>
           <p><label for="tags">Tags: </label><input class="tags" type="text"></p>
           <p><input type="hidden" class="deleteID" value="${deleteID}"><input type="submit"></p>
         </fieldset>
@@ -46,19 +55,23 @@
   </script>
 </head>
 
-<body class="">
+<body>
   <header id="erros"></header>
-  <nav class="opcoes"><a class="right" href="#">Opções</a></nav>
+
+  <!-- Opções e autenticação -->
+  <nav class="opcoes"><a class="right" href="#">Opções &#9662;</a></nav>
   <!-- Ícones de http://www.iconspedia.com/pack/shiny-social-icons-icons-3516/ -->
-  <section class="opcoes success">
+  <section class="opcoes">
+    <span class="fechar right"><a href="#">Ocultar &#9652;</a></span>
     <form>
-      <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"></select>             
+      <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"><option></option></select>             
     </form>
     <form>
-      <img src="imagens/Youtube.png" alt="YouTube"><span id="youtubeAuth"></span><select id="playlistYouTube"></select>             
+      <img src="imagens/Youtube.png" alt="YouTube"><span id="youtubeAuth"></span><select id="playlistYouTube"><option></option></select>             
     </form>
-    <span class="fechar right">[<a href="#">X</a>]</span>
   </section>
+  
+  <!-- A lista de vídeos -->
   <article class="container lista">
   </article>
 </body>
