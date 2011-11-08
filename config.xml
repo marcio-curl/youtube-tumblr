@@ -12,5 +12,5 @@
   <access origin="https://youtube.com" subdomains="true"/>
   <access origin="https://google.com" subdomains="true"/>
   <access origin="http://youtube.com" subdomains="true"/>
-  <access origin="http://ytimg.com" subdomains="true"/>  
+  <access origin="http://ytimg.com" subdomains="true"/>
 </widget>

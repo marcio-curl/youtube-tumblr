@@ -152,13 +152,9 @@ function listarVideos()
           videoID: item.video.id,
           imgSrc: function(){ 
             if (!!item.video.thumbnail)
-              return item.video.thumbnail.sqDefault;
+              return item.video.thumbnail.hqDefault;
           },
           link: 'https://www.youtube.com/v/' + item.video.id,
-//              function(){
-//              for (i in item.video.player)
-//                return item.video.player[i]; // ### Saber por que só funciona assim.
-//            },
           titulo: item.video.title,
           descricao: item.video.description,
           deleteID: item.id
@@ -171,6 +167,7 @@ function listarVideos()
       
 
       /* ---------- Eventos ---------- */
+      $('.video textarea').inputexpander();      
       
       /* Popup via JQueryUI */
       $(".youtube").YouTubePopup();

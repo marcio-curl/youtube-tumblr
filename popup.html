@@ -14,6 +14,7 @@
   <link type="text/css" href="css/jquery-ui/vader/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 
   <script type="text/javascript" src="scripts/jquery.youtubepopup.min.js"></script>    
+  <script type="text/javascript" src="scripts/jquery.textareaexpander.js"></script>    
   <script type="text/javascript" src="scripts/playlist.js"></script>
   
   <!-- Blueprint CSS -->
@@ -22,10 +23,9 @@
   <!--[if lt IE 8]>
     <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
+  <link rel="stylesheet" href="css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen">
 
   <link rel="stylesheet" href="css/playlist.css" type="text/css" media="all">
-
-<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
   <!-- Template de autenticação -->
   <script id="authLink" type="text/x-jquery-tmpl">
@@ -39,16 +39,18 @@
 
   <!-- Template para a lista de vídeos -->
   <script id="listaVideos" type="text/x-jquery-tmpl">
-    <section id="${videoID}" class="video span-20">
+    <section id="${videoID}" class="video bordas append-bottom span-20">
       <form>
-        <fieldset>
-          <legend>${titulo}</legend>
-          <a rel="${videoID}" class="youtube" href="${link}"><img class="left" src="${imgSrc}" alt="Thumb"></a>
-          <p>${descricao}</p>
-          <p><label for="texto">Legenda: </label><textarea class="legenda"></textarea></p>
-          <p><label for="mais">Mais em </label><input class="mais" type="url"></p>
-          <p><label for="tags">Tags: </label><input class="tags" type="text"></p>
-          <p><input type="hidden" class="deleteID" value="${deleteID}"><input type="submit"></p>
+        <fieldset class="">
+          <legend class="span-20">${titulo}</legend>
+          <a rel="${videoID}" class="youtube span-5 prepend-1 append-1 prepend-top" href="${link}"><img class="span-5" src="${imgSrc}" alt="Thumb"></a>
+          <ul class="prepend-top span-12">
+            <li class="append-bottom last">${descricao}</li>
+            <li class=""><label for="texto" class="span-2">Legenda </label><textarea class="legenda bordas span-10 last"></textarea></li>
+            <li class="clear"><label for="mais" class="span-2">Mais em </label><input class="mais bordas span-10 last" placeholder="URL para mais informações" type="url"></li>
+            <li class=""><label for="tags" class="span-2 clear">Tags </label><input class="tags bordas span-10 last" type="text" placeholder="separados por vírgula "></li>
+            <li class="prepend-2"><input type="hidden" class="deleteID" value="${deleteID}"> <input type="submit" class="span-2"></li>
+          </ul>
         </fieldset>
       </form>
     </section>
@@ -64,10 +66,10 @@
   <section class="opcoes">
     <span class="fechar right"><a href="#">Ocultar &#9652;</a></span>
     <form>
-      <img src="imagens/Tumblr.png" alt="Tumblr"><span id="tumblrAuth"></span><select id="blogTumblr"><option></option></select>             
+      <img src="imagens/Tumblr.png" alt="Tumblr"><span class="alt" id="tumblrAuth"></span><select id="blogTumblr"><option></option></select>             
     </form>
     <form>
-      <img src="imagens/Youtube.png" alt="YouTube"><span id="youtubeAuth"></span><select id="playlistYouTube"><option></option></select>             
+      <img src="imagens/Youtube.png" alt="YouTube"><span class="alt" id="youtubeAuth"></span><select id="playlistYouTube"><option></option></select>             
     </form>
   </section>
   

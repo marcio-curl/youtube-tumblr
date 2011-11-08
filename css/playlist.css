@@ -1,10 +1,5 @@
-body {
-  font-family: 'Ubuntu', sans-serif;
-}
-
 img {
   vertical-align: middle;
-  padding: 0 0.5em;
 }
 
 nav {
@@ -12,38 +7,27 @@ nav {
   padding-right: 1em;
 }
 
-.error {
-  width: 100%;
-  position: fixed;
+fieldset {
+  padding: 0;
+  border-width: 0;
 }
 
+
+/* -------------------- Opções -------------------- */
 section.opcoes select {
   min-width: 12em;
 }
 
-/*
+
 section.opcoes {
   display: none;
 }
-*/
 
-
+/*
 nav.opcoes {
   display: none;
 }
-
-
-.erros {
-  position: fixed;
-}
-
-.video p {
-  padding-left: 140px;
-}
-
-input[type="text"] {
-  width: 50em;
-}
+*/
 
 .opcoes select {
   margin-left: 0.7em;
@@ -54,7 +38,93 @@ input[type="text"] {
   min-width: 20%;
 }
 
-.lista textarea {
-  width: 50em;
-  height: 2em;
+.opcoes img {
+  margin-right: 0.5em;
+}
+
+
+/* -------------------- Vídeos -------------------- */
+/* http://colorschemedesigner.com/#3D11T4dYOw0w0 */
+
+/*
+#e5effc         #aab1bb
+        #dbe8f9 
+#ebf3fc         #476fa2
+*/
+
+.bordas {
+  border: solid #dbe8f9 2px;
+  border-radius: 5px;
+}
+
+.bordas:focus {
+  border-color: #aab1bb;
+}
+
+.video {
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-color: white;
+}
+
+.video ul {
+  list-style-type: none;
+}
+
+.video li {
+  min-height: 3em;
+}
+
+.video label, .video input {
+  vertical-align: middle;
+}
+
+.video input, .video textarea {
+  padding: 0;
+  padding-left: 3px;
+  margin: 0;
+  vertical-align: bottom;
+  border-width: 2px;
+  border-color: #dbe8f9;
+}
+
+.video textarea {
+  height: 1.5em;
+  min-height: 1.5em; /* Para o inputexpander */
+  margin-bottom: 1em;
+}
+
+.video img {
+  padding: 5px 3px;
+  background-color: #000;
+  border: solid black 1px;
+  border-radius: 5px;
+}
+
+.video input[type="submit"] {
+  width: auto;
+  padding: 5px;
+  border-radius: 10px;
+  color: #000;
+  min-height: 1.5em;
+}
+
+.video legend {
+  text-align: center;
+/*  background-color: #ebf3fc; */
+  background-color: #dbe8f9;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.error {
+  width: 100%;
+  position: fixed;
+}
+
+.erros {
+  position: fixed;
 }
