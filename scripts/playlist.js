@@ -29,6 +29,7 @@ function Oautenticar()
   // Verifica se já possuimos os tokens de acesso
   if (!preferencias.youtubeAccessToken || !preferencias.youtubeAccessTokenSecret)
   {
+    $('nav.opcoes').hide();   
     $('section.opcoes').show().removeClass('success').addClass('notice');    
     obterTokens(oauthYouTube, 'youtube', { scope: 'https://gdata.youtube.com' }, function(link){
       $('#youtubeAuth').html('<a href="' + link + '">Autenticar</a>');
@@ -71,7 +72,8 @@ function Oautenticar()
   /* ---------- Autenticação no Tumblr ---------- */
   if (!preferencias.tumblrAccessToken || !preferencias.tumblrAccessTokenSecret)
   {
-    $('section.opcoes').removeClass('success').addClass('notice');    
+    $('nav.opcoes').hide();
+    $('section.opcoes').show().removeClass('success').addClass('notice');    
     obterTokens(oauthTumblr, 'tumblr', {}, function(link){
       $('#tumblrAuth').html('<a href="' + link + '">Autenticar</a>');        
     });
@@ -223,7 +225,10 @@ function listarVideos()
     });
   }
   else
-    $('section.opcoes').addClass('notice');
+  {
+    $('nav.opcoes').hide();
+    $('section.opcoes').show().addClass('notice');
+  }
 }
 
 
